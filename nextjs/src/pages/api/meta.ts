@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 const mariadb = require('mariadb')
 
 const config = {
-  host: 'db',    
+  host: process.env.MYSQL_DATABASE,    
   database: process.env.MYSQL_DATABASE,    
   user: process.env.MYSQL_USER,    
   password: process.env.MYSQL_PASSWORD

@@ -11,7 +11,7 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: development
-      MYSQL_HOST: 'localhost'
+      MYSQL_HOST: 'db'
       MYSQL_DATABASE: 'onvu'
       MYSQL_USER: 'onvu'
       MYSQL_PASSWORD: 'P@ssw0rd'
