@@ -10,9 +10,11 @@ docker-compose up
 ```
 
 ## Run
-
+```
 Surf to: [http://localhost:3000](http://localhost:3000)
+```
 
 ## Edit
-
-Sublime ./nextjs/
+```
+subl ./nextjs/
+```
