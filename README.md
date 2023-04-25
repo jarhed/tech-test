@@ -1,6 +1,7 @@
-# A technical test I recieved
+# A technical test
 
 
+## Install
 ```
 git clone git@github.com:jarhed/tech-test.git
 
@@ -8,4 +9,10 @@ docker-compose up
 
 ```
 
-[http://localhost:3000](http://localhost:3000)
+## Run
+
+Surf to: [http://localhost:3000](http://localhost:3000)
+
+## Edit
+
+Sublime ./nextjs/
