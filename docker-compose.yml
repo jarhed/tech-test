@@ -29,7 +29,7 @@ services:
     expose:
       - '3306'
     volumes:
-      - ./onvu-db:/var/lib/onvusql
-      - ./onvu-db/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./mariadb:/var/lib/mysql
+      - ./mariadb/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
 volumes:
-  onvu-db:
+  mariadb:
