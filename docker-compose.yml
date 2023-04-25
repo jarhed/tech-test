@@ -33,3 +33,4 @@ services:
       - ./mariadb/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
 volumes:
   mariadb:
+  nextjs: 
