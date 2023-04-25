@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: ./nextjs/
+      target: runner
+    volumes:
+      - ./nextjs/:/app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      MYSQL_HOST: 'localhost'
+      MYSQL_DATABASE: 'onvu'
+      MYSQL_USER: 'onvu'
+      MYSQL_PASSWORD: 'P@ssw0rd'
+      MYSQL_ROOT_PASSWORD: 'r00tP@ssw0rd'
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'onvu'
+      MYSQL_USER: 'onvu'
+      MYSQL_PASSWORD: 'P@ssw0rd'
+      MYSQL_ROOT_PASSWORD: 'r00tP@ssw0rd'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./onvu-db:/var/lib/onvusql
+      - ./onvu-db/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+volumes:
+  onvu-db:
