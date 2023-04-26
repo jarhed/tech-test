@@ -22,7 +22,7 @@ export default async function handler(
 
     try {
       const db = await mariadb.createConnection(config)
-      let result = await db.query(`INSERT INTO video_data (filename, meta_data) VALUES ('${filename}','${JSON.stringify(meta_data)}')`)
+      let result = await db.query(`INSERT INTO video_data (filename, meta_data) VALUES (?,?)`, [filename, JSON.stringify(meta_data)])
       res.status(200).json({ status: 'OK' })
     } catch (e) {
       res.status(500).send({ status: JSON.stringify(e) })
