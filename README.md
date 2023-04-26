@@ -3,7 +3,7 @@
 
 ## Install
 ```
-git clone git@github.com:jarhed/tech-test.git
+git clone https://github.com/jarhed/tech-test.git
 
 docker-compose up
 ```
