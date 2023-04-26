@@ -2,11 +2,8 @@ version: '3.8'
 services:
   web:
     build:
-      context: ./nextjs/
+      context: ./nextjs
       target: runner
-    volumes:
-      - ./nextjs/:/app
-    command: npm run dev
     ports:
       - "3000:3000"
     environment:
@@ -33,4 +30,4 @@ services:
       - ./mariadb/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
 volumes:
   mariadb:
-  nextjs: 
+  nextjs:
