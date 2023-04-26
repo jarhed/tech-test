@@ -18,12 +18,11 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === 'POST') {
-    const { filename } = req.body
-    let meta_data = null
+    const { filename, meta_data } = req.body
 
     try {
       const db = await mariadb.createConnection(config)
-      let result = await db.query(`INSERT INTO video_data (filename, meta_data) VALUES ('${filename}','${meta_data}')`)
+      let result = await db.query(`INSERT INTO video_data (filename, meta_data) VALUES ('${filename}','${JSON.stringify(meta_data)}')`)
       res.status(200).json({ status: 'OK' })
     } catch (e) {
       res.status(500).send({ status: JSON.stringify(e) })
