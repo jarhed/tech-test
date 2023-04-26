@@ -12,30 +12,18 @@ export function DashPlayer ({ url }: { url: string}) {
       const player = MediaPlayer().create()
       
       player.initialize(ref.current, url, true)
-      player.on(MediaPlayer.events['REPRESENTATION_SWITCH'], (event) => {
+      player.on(MediaPlayer.events['CAN_PLAY'], (event) => {
         const streamInfo = player.getActiveStream()!.getStreamInfo()
         const dashMetrics = player.getDashMetrics()
         const dashAdapter = player.getDashAdapter()
         // @ts-ignore
-        var repSwitch = dashMetrics.getCurrentRepresentationSwitch('video', true);
-        const periodIdx = streamInfo!.index
+        const videoInfo = dashAdapter.getMediaInfoForType(streamInfo, 'video')
         // @ts-ignore
-        const bitrate = repSwitch ? Math.round(dashAdapter.getBandwidthForRepresentation(repSwitch.to, periodIdx) / 1000) : NaN;
-        // @ts-ignore
-        const adaptation = dashAdapter.getAdaptationForType(periodIdx, 'video', streamInfo);
-        // @ts-ignore
-        const currentRep = adaptation.Representation_asArray.find((rep) => {
-        // @ts-ignore
-            return rep.id === repSwitch.to
-        })
-        const frameRate = currentRep.frameRate;
-        const resolution = currentRep.width + 'x' + currentRep.height;
+        const audioInfo = dashAdapter.getMediaInfoForType(streamInfo, 'audio')
 
         let meta_data = {
-          bitrate,
-          currentRep,
-          resolution,
-          frameRate
+          videoInfo,
+          audioInfo
         }
 
         setReadyToPlay(true)
